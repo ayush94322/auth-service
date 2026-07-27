@@ -7,9 +7,8 @@ export const registerSchema = z.object({
         .min(2)
         .max(100),
     email: z
-        .string()
-        .trim()
-        .email(),
+        .email()
+        .trim(),
     password: z
         .string()
         .min(8)
