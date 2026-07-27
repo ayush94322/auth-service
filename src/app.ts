@@ -1,5 +1,5 @@
 import express from "express";
-import { success } from "zod";
+import { errorHandler } from "./middleware/error.middleware.js";
 
 const app = express();
 
@@ -13,5 +13,8 @@ app.get("/health", (req, res)=>{
         message: "Server is running"
     });
 });
+
+//Error Handling Middleware
+app.use(errorHandler);
 
 export default app;
