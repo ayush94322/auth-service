@@ -1,5 +1,6 @@
 import express from "express";
 import { errorHandler } from "./middleware/error.middleware.js";
+import authRouter from "./routes/auth.route.js"
 
 const app = express();
 
@@ -13,6 +14,7 @@ app.get("/health", (req, res)=>{
         message: "Server is running"
     });
 });
+app.use("/api/v1/auth", authRouter);
 
 //Error Handling Middleware
 app.use(errorHandler);

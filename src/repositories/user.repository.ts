@@ -20,10 +20,15 @@ export class UserRepository {
     async create(data: {
         name: string;
         email: string;
-        passworHash: string
+        passwordHash: string
     }) {
         return prisma.user.create({
-            data
+            data,
+            select: {
+                id: true,
+                name: true,
+                email: true,
+            },
         });
     }
 }
