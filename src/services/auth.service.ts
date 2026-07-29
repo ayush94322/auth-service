@@ -1,5 +1,4 @@
-import { env } from "../config/env.js";
-import bcrypt from "bcrypt";
+import { hashPassword } from "../utils/password.js";
 import { UserRepository } from "../repositories/user.repository.js";
 import { ConflictError } from "../errors/ConflictError.js";
 import type { RegisterDto } from "../types/auth.js";
@@ -17,7 +16,7 @@ export class AuthService {
                 "Email already registered"
             );
         }
-        const passwordHash = await bcrypt.hash(data.password, env.BCRYPT_ROUNDS);
+        const passwordHash = await hashPassword(data.password);
         const user = await this.userRepository.create({
             name: data.name,
             email: data.email,
