@@ -3,10 +3,12 @@ import { UserRepository } from "../repositories/user.repository.js";
 import { ConflictError } from "../errors/ConflictError.js";
 import type { RegisterDto } from "../types/auth.js";
 import { UserMapper } from "../mappers/user.mapper.js";
+import { JwtService } from "./jwt.service.js";
 
 export class AuthService {
     constructor(
-        private readonly userRepository = new UserRepository()
+        private readonly userRepository = new UserRepository(),
+        private readonly jwtService = new JwtService()
     ){}
 
     async register(data: RegisterDto) {
