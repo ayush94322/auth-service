@@ -23,12 +23,7 @@ export class UserRepository {
         passwordHash: string
     }) {
         return prisma.user.create({
-            data,
-            select: {
-                id: true,
-                name: true,
-                email: true,
-            },
+            data
         });
     }
 }

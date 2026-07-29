@@ -3,6 +3,7 @@ import bcrypt from "bcrypt";
 import { UserRepository } from "../repositories/user.repository.js";
 import { ConflictError } from "../errors/ConflictError.js";
 import type { RegisterDto } from "../types/auth.js";
+import { UserMapper } from "../mappers/user.mapper.js";
 
 export class AuthService {
     constructor(
@@ -23,10 +24,6 @@ export class AuthService {
             passwordHash
         });
 
-        return {
-            id: user.id,
-            name: user.name,
-            email: user.email
-        };
+        return UserMapper.toResponse(user);
     }
 }
