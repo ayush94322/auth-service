@@ -18,3 +18,13 @@ export const registerSchema = z.object({
             "Passwords must contain uppercase, lowercase, number and special character."
         ),
 });
+
+export const loginSchema = z.object({
+    email: z
+        .string()
+        .trim()
+        .pipe(z.email()),
+    password: z
+        .string()
+        .min(1)
+})

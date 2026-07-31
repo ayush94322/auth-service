@@ -22,7 +22,7 @@ model User {
   emailVerified       Boolean               @default(false)
   role                Role                  @default(USER)
 
-  // refreshTokens       RefreshToken[]
+  refreshTokens       RefreshToken[]
   // emailVerifications  EmailVerification[]
   // passwordResets      PasswordReset[]
 
@@ -30,16 +30,18 @@ model User {
   updatedAt           DateTime              @updatedAt
 }
 
-// model RefreshToken {
-//   id          String   @id @default(uuid())
-//   tokenHash   String   @unique
-//   expiresAt   DateTime
-//   revokedAt   DateTime?
-//   createdAt   DateTime @default(now())
+model RefreshToken {
+  id          String   @id @default(uuid())
+  tokenHash   String   @unique
+  expiresAt   DateTime
+  revokedAt   DateTime?
+  createdAt   DateTime @default(now())
+  userId      String
 
-//   userId      String
-//   user        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
-// }
+  user        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
+}
 
 // model EmailVerification {
 //   id          String   @id @default(uuid())
